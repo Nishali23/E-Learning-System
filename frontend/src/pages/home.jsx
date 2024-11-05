@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import React from "react";
 import TopSection from "./TopSection";
 import SecondSection from "./SecondSection";
-import CourseCard from "./CourseCard";
+import CourseCategories from "./CourseCategories";
 import WebMasterDetails from "./WebMasterDetails";
 import LastRow from "./LastRow";
 import StudentComments from "./StudentComments";
@@ -38,7 +38,7 @@ const Home = () => {
     },
   ];
 
-  const courseData = [
+  const courseCategories = [
     {
       imgSrc: "/assets/GraphicDesign.jpeg",
       altText: "Graphic Design",
@@ -128,8 +128,8 @@ const Home = () => {
         </div>
 
         <div className="row d-flex justify-content-center align-items-start">
-          {courseData.map((course, index) => (
-            <CourseCard
+          {courseCategories.map((course, index) => (
+            <CourseCategories
               key={index}
               imgSrc={course.imgSrc}
               altText={course.altText}
@@ -139,6 +139,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+
       <div className="row" style={{ height: "100vh" }}>
         <div className="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
           <img
