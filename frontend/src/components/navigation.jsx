@@ -1,16 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const Navigation = () => {
+  const location = useLocation();
+  const [bgColor, setBgColor] = useState("transparent");
+
+  useEffect(() => {
+    // Update the background color based on the current route
+    switch (location.pathname) {
+      case "/":
+        setBgColor("#CCCCFF"); // Background color for Home
+        break;
+      case "/courses":
+        setBgColor("#F0F8FF"); // Background color for Courses
+        break;
+      case "/about":
+        setBgColor("#E6E6FA"); // Background color for About Us
+        break;
+      case "/login":
+        setBgColor("#E6E6FA");
+        break;
+      case "/signup":
+        setBgColor("#E6E6FA");
+        break;
+      default:
+        setBgColor("transparent"); // Default transparent background
+    }
+  }, [location]);
+
   return (
     <nav
       className="navbar navbar-expand-lg"
-      style={{ backgroundColor: "#CCCCFF" }}
+      style={{
+        backgroundColor: bgColor,
+        transition: "background-color 0.3s ease", // Smooth transition
+        padding: "20px",
+      }}
     >
       <div className="container">
-        <a className="navbar-brand d-flex fs-4" href="#">
+        <Link to="/" className="navbar-brand d-flex fs-4">
           <img
             src="/assets/Logo.png"
             alt="Logo"
@@ -32,7 +63,7 @@ const Navigation = () => {
               Proper education with success
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Toggler Button */}
         <button
@@ -48,27 +79,27 @@ const Navigation = () => {
         </button>
 
         <div
-          className=" col justify-content-lg-end collapse navbar-collapse "
+          className="collapse navbar-collapse justify-content-lg-end"
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
+              <Link
+                to="/"
                 className="nav-link"
-                href="#"
                 style={{
                   marginRight: "20px",
                   color: "#71797E",
                   fontWeight: "500",
                 }}
               >
-                Categories
-              </a>
+                Home
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
+                to="/courses"
                 className="nav-link"
-                href="#"
                 style={{
                   marginRight: "20px",
                   color: "#71797E",
@@ -76,34 +107,34 @@ const Navigation = () => {
                 }}
               >
                 Courses
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
+                to="/about"
                 className="nav-link"
-                href="#"
                 style={{ color: "#71797E", fontWeight: "500" }}
               >
-                Contacts
-              </a>
+                About Us
+              </Link>
             </li>
           </ul>
 
           <div className="d-flex">
-            <button
+            <Link
+              to="/login"
               className="btn ms-3"
-              type="submit"
               style={{ backgroundColor: "#5D3FD3", color: "#ffffff" }}
             >
               Log in
-            </button>
-            <button
+            </Link>
+            <Link
+              to="/signup"
               className="btn ms-3"
-              type="submit"
               style={{ backgroundColor: "#5D3FD3", color: "#ffffff" }}
             >
               Sign up
-            </button>
+            </Link>
           </div>
         </div>
       </div>
