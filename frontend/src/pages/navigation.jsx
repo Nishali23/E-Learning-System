@@ -9,16 +9,15 @@ const Navigation = () => {
   const [bgColor, setBgColor] = useState("transparent");
 
   useEffect(() => {
-    // Update the background color based on the current route
     switch (location.pathname) {
       case "/":
-        setBgColor("#CCCCFF"); // Background color for Home
+        setBgColor("#CCCCFF");
         break;
       case "/courses":
-        setBgColor("#F0F8FF"); // Background color for Courses
+        setBgColor("#E6E6FA");
         break;
       case "/about":
-        setBgColor("#E6E6FA"); // Background color for About Us
+        setBgColor("#E6E6FA");
         break;
       case "/login":
         setBgColor("#E6E6FA");
@@ -27,7 +26,7 @@ const Navigation = () => {
         setBgColor("#E6E6FA");
         break;
       default:
-        setBgColor("transparent"); // Default transparent background
+        setBgColor("#E6E6FA");
     }
   }, [location]);
 
@@ -36,7 +35,7 @@ const Navigation = () => {
       className="navbar navbar-expand-lg"
       style={{
         backgroundColor: bgColor,
-        transition: "background-color 0.3s ease", // Smooth transition
+        transition: "background-color 0.3s ease",
         padding: "20px",
       }}
     >
@@ -65,7 +64,6 @@ const Navigation = () => {
           </div>
         </Link>
 
-        {/* Toggler Button */}
         <button
           className="navbar-toggler ms-auto d-lg-none"
           type="button"

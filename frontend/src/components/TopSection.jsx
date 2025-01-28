@@ -7,7 +7,7 @@ const TopSection = ({}) => {
       style={{
         backgroundColor: "#CCCCFF",
         position: "relative",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
       <div className="col-lg-6 col-md-12 col-sm-12 d-flex flex-column align-items-center align-items-lg-end justify-content-center">
@@ -19,6 +19,7 @@ const TopSection = ({}) => {
               width: "80%",
               textAlign: "left",
               marginBottom: "30px",
+              marginTop: "10%",
             }}
           >
             Engaging & <br />
@@ -92,6 +93,7 @@ const TopSection = ({}) => {
         className="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center justify-content-center"
         style={{
           position: "relative",
+          marginBottom: "5%",
         }}
       >
         <img
