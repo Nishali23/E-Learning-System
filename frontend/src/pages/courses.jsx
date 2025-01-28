@@ -8,7 +8,7 @@ const Courses = () => {
   const [helpTextTop, setHelpTextTop] = useState("20%");
   const [searchTop, setSearchTop] = useState("60%");
   const [imageHeight, setImageHeight] = useState("25vh");
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const updateResponsiveStyles = () => {

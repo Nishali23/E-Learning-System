@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import React from "react";
-import TopSection from "./TopSection";
-import SecondSection from "./SecondSection";
-import CourseCategories from "./CourseCategories";
-import WebMasterDetails from "./WebMasterDetails";
-import LastRow from "./LastRow";
-import StudentComments from "./StudentComments";
-import HorisontalImage from "./HorisontalImage";
+import TopSection from "../components/TopSection";
+import SecondSection from "../components/SecondSection";
+import CourseCategories from "../components/CourseCategory";
+import WebMasterDetails from "../components/WebMasterDetails";
+import LastRow from "../components/LastRow";
+import StudentComments from "../components/StudentComments";
+import HorisontalImage from "../components/HorisontalImage";
 
 const Home = () => {
   const StudentDetails = [

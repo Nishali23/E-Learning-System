@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Input = styled.input`
   background-color: rgba(255, 255, 255, 0.6);
@@ -11,6 +12,51 @@ const Input = styled.input`
 `;
 
 const Signup = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setMessage("Passwords do not match!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/auth/signup",
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
+
+      setMessage(response.data.message || "Signup successful!");
+    } catch (error) {
+      console.error(error);
+      setMessage(
+        error.response?.data?.message || "An error occurred during signup."
+      );
+    }
+  };
+
   return (
     <div className="container-fluid">
       <div
@@ -25,7 +71,7 @@ const Signup = () => {
         }}
       >
         <div
-          className="col-lg-4 col-md-6  "
+          className="col-lg-4 col-md-6"
           style={{
             background: "rgba(255, 255, 255, 0.2)",
             backdropFilter: "blur(10px)",
@@ -35,25 +81,26 @@ const Signup = () => {
           }}
         >
           <h1 className="mb-4" style={{ color: "#5D3FD3", fontWeight: "700" }}>
-            Get Started{" "}
+            Get Started
           </h1>
-
-          <h2 className="mb-4 " style={{ color: "#191970", fontWeight: "700" }}>
+          <h2 className="mb-4" style={{ color: "#191970", fontWeight: "700" }}>
             Sign up
           </h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label
-                htmlFor="email"
+                htmlFor="name"
                 className="form-label"
                 style={{ color: "#71797E", fontWeight: "500" }}
               >
                 Profile Name
               </label>
               <Input
-                type="email"
+                type="text"
                 className="form-control"
-                id="email"
+                id="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Enter your Name"
                 style={{
                   height: "100%",
@@ -75,6 +122,8 @@ const Signup = () => {
                 type="email"
                 className="form-control"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
                 style={{
                   height: "100%",
@@ -93,9 +142,11 @@ const Signup = () => {
                 Password
               </label>
               <Input
-                type="email"
+                type="password"
                 className="form-control"
-                id="email"
+                id="password"
+                value={formData.password}
+                onChange={handleChange}
                 placeholder="Enter your Password"
                 style={{
                   height: "100%",
@@ -107,17 +158,19 @@ const Signup = () => {
 
             <div className="mb-5">
               <label
-                htmlFor="password"
+                htmlFor="confirmPassword"
                 className="form-label"
                 style={{ color: "#71797E", fontWeight: "500" }}
               >
                 Confirm Password
               </label>
               <Input
-                type="email"
+                type="password"
                 className="form-control"
-                id="email"
-                placeholder="Enter your Password"
+                id="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm your Password"
                 style={{
                   height: "100%",
                   minHeight: "7vh",
@@ -125,6 +178,8 @@ const Signup = () => {
                 }}
               />
             </div>
+
+            {message && <p className="text-danger mb-3">{message}</p>}
 
             <button
               type="submit"
@@ -141,9 +196,9 @@ const Signup = () => {
             </button>
           </form>
           <h6 style={{ color: "#71797E" }}>
-            Already have an Account ?{" "}
+            Already have an Account?{" "}
             <a
-              href="/signup"
+              href="/login"
               style={{
                 color: "#5D3FD3",
                 fontWeight: "700",

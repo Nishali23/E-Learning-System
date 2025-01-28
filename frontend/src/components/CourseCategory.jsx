@@ -33,13 +33,13 @@ const CourseCategories = ({ imgSrc, altText, title, coursesCount }) => {
             style={{
               maxWidth: "100px",
               height: "auto",
-              transition: "transform 0.3s ease-in-out", // smooth image transition
+              transition: "transform 0.3s ease-in-out",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.2)"; // scale image up on hover
+              e.currentTarget.style.transform = "scale(1.2)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)"; // scale back to normal
+              e.currentTarget.style.transform = "scale(1)";
             }}
           />
         </div>
